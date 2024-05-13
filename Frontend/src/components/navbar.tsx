@@ -113,24 +113,16 @@ const NavBar = () =>{
                             <p className="text-xl text-white">{`Hi, ${user.fullName}`}</p>
                         </div>
                         <div className="flex gap-2 items-center">
-                            <div className="dropdown dropdown-end">
-                                <ul tabIndex={0} className="dropdown-content bg-base-100 rounded-box w-52 shadow-lg flex gap-4">
-                                    <li>
-                                        <a href="/search" className="text-white-500 hover:text-blue-500">
-                                            <span role="img" aria-label="Profile">Search</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <Link href="/givefeedback" className="text-white-500 hover:text-blue-500">
-                                            <span role="img" aria-label="Profile">MyProfile</span>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <button className="text-white-500 hover:text-blue-500" onClick={handleLogout}>
-                                            <span role="img" aria-label="Logout">Logout</span>
-                                        </button>
-                                    </li>
-                                </ul>
+                            <div className="flex gap-4">
+                                <a href="/search" className="text-white hover:text-blue-500 px-4 py-2 rounded-md bg-gray-800">
+                                    <span role="img" aria-label="Search">🔍 Search</span>
+                                </a>
+                                <a href="/userprofile" className="text-white hover:text-blue-500 px-4 py-2 rounded-md bg-gray-800">
+                                    <span role="img" aria-label="My Profile">👤 My Profile</span>
+                                </a>
+                                <button className="text-white hover:text-blue-500 px-4 py-2 rounded-md bg-gray-800" onClick={handleLogout}>
+                                    <span role="img" aria-label="Logout">🚪 Logout</span>
+                                </button>
                             </div>
                         </div>
                     </div>
