@@ -10,9 +10,9 @@ export class ForumController {
   constructor(private readonly forumService: ForumService) { }
 
   @UseGuards(AuthGuard)
-  @Post()
-  create(@Body() createForumDto: CreateForumDto) {
-    const userId = createForumDto.userId;
+  @Post(':id/create')
+  create(@Param('id') id: number, @Body() createForumDto: CreateForumDto) {
+    const userId = id;
     return this.forumService.create(createForumDto, userId);
   }
 
@@ -25,6 +25,12 @@ export class ForumController {
     } else {
       return this.forumService.findAll();
     }
+  }
+
+  @UseGuards(AuthGuard)
+  @Get()
+  find() {
+    return this.forumService.findAll();
   }
 
   @UseGuards(AuthGuard)
