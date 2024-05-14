@@ -82,7 +82,7 @@ export default function UserProfile() {
                                 {forums.map((forum) => (
                                     // <div key={post.id} className="border-b border-gray-600 py-2">
                                     <div key={forum.id} className="bg-gray-700 rounded-lg p-4 my-2">
-                                        <a href={`/post/${forum.id}`} className="text-white">{forum.title}</a>
+                                        <a href={`/forum/${forum.id}`} className="text-white">{forum.title}</a>
                                     </div>
                                 ))}
                             </div>
