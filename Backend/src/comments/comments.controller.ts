@@ -10,10 +10,18 @@ export class CommentsController {
 
   @UseGuards(AuthGuard)
   @Post('create/:userId/:postId')
-  create(@Body() createCommentDto: CreateCommentDto, @Param('userId') userId: number, @Param('postId') postId:  number) {
+  create1(@Body() createCommentDto: CreateCommentDto, @Param('userId') userId: number, @Param('postId') postId:  number) {
     createCommentDto.userId = userId;
     createCommentDto.postId = postId;
-    return this.commentsService.create(createCommentDto, userId, postId);
+    return this.commentsService.create1(createCommentDto, userId, postId);
+  }
+
+  @UseGuards(AuthGuard)
+  @Post('create/:userId/forum/:forumId')
+  create2(@Body() createCommentDto: CreateCommentDto, @Param('userId') userId: number, @Param('forumId') forumId:  number) {
+    createCommentDto.userId = userId;
+    createCommentDto.forumId = forumId;
+    return this.commentsService.create2(createCommentDto, userId, forumId);
   }
 
   @UseGuards(AuthGuard)
