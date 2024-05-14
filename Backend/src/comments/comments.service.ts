@@ -18,7 +18,7 @@ export class CommentsService {
   ) { }
 
 
-  async create(createCommentDto: CreateCommentDto, userId: number, postId: number): Promise<Comment> {
+  async create1(createCommentDto: CreateCommentDto, userId: number, postId: number): Promise<Comment> {
     const user = await this.userRepo.findOne({ where: { id: userId } });
     if (!user) {
       throw new NotFoundException('User not found');
@@ -28,6 +28,19 @@ export class CommentsService {
       throw new NotFoundException('Post not found');
     }
     const comment = this.commentRepo.create({ ...createCommentDto, user, post })
+    return await this.commentRepo.save(createCommentDto);
+  }
+
+  async create2(createCommentDto: CreateCommentDto, userId: number, forumId: number): Promise<Comment> {
+    const user = await this.userRepo.findOne({ where: { id: userId } });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    const forum = await this.forumRepo.findOne({ where: { id: forumId } });
+    if (!forum) {
+      throw new NotFoundException('Post not found');
+    }
+    const comment = this.commentRepo.create({ ...createCommentDto, user, forum })
     return await this.commentRepo.save(createCommentDto);
   }
 
@@ -58,13 +71,11 @@ export class CommentsService {
     return comments;
   }
 
-  async getCommentByForum(forunId: number) {
-    const comments = await this.forumRepo.find({
-      where: { id: forunId },
-      relations: ['comments']
-    });
+  async getCommentByForum(forumId: number) {
+    const comments = await this.commentRepo.find({where: {forumId: forumId}});
     return comments;
   }
+
   //Sajid
   async countComments(): Promise<number> {
     return this.commentRepo.count();

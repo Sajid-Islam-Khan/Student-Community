@@ -4,8 +4,10 @@ export class CreateCommentDto {
     @IsNotEmpty()
     userId: number;
 
-    @IsNotEmpty()
     postId: number;
+
+    forumId: number;
     
+    @IsNotEmpty()
     content: string;
 }
